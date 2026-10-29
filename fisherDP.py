@@ -109,7 +109,7 @@ class FisherCluster:
             b (int): End Time of the Window
 
         Returns:
-            float: 
+            float: intra-group inertia of the data between windows a and b
         """
         d_seg = data[a:b + 1, :]  # x_a, ..., x_b (b inclus)
         mu = d_seg.mean(axis=0)
@@ -205,10 +205,11 @@ def plot_space_scatter(X: np.ndarray, clus_fisher: np.ndarray,
     after clustering into K classes using three models (Fisher, K-means, CAH)
 
     Args:
-        clus_fisher (np.ndarray): training data reduced (2 dims)
-        clus_kmeans
-        clus_cah
-        K (int): Number of clusters
+        X (np.ndarray): training data reduced (2 dims)
+        clus_fisher (np.ndarray): clustering results of Fisher
+        clus_kmeans (np.ndarray): clustering results of k-means
+        clus_cah (np.ndarray): clustering results of CAH
+        save_path (str): path of image saving
     """
     fig, axes = plt.subplots(1, 3, figsize=(10, 5))
 
@@ -239,8 +240,12 @@ def plot_time_scatter(X: np.ndarray, cuts_fisher: np.ndarray, clus_fisher: np.nd
     points on the y-axis.
 
     Args:
-        X (np.ndarray):  training data reduced (2 dims)
-        K (int): Number of clusters
+        X (np.ndarray): training data reduced (2 dims)
+        cuts_fisher (np.ndarray): cluster boundaries of Fisher
+        clus_fisher (np.ndarray): clustering results of Fisher
+        clus_kmeans (np.ndarray): clustering results of k-means
+        clus_cah (np.ndarray): clustering results of CAH
+        save_path (str): path of image saving
     """
     fig, axes = plt.subplots(3, 2, figsize=(8, 10))
 
@@ -285,7 +290,7 @@ def compute_intra_inertia(X: np.ndarray, labels: np.ndarray) -> float:
     Args:
         X (np.ndarray): Training data
         labels (np.ndarray): Labels after clustering
-
+        
     Returns:
         float: Intra-inertia
     """
@@ -306,6 +311,7 @@ def plot_inertia(X: np.ndarray, max_k: int, save_path: Path | None = None):
     Args:
         X (np.ndarray): Traning data
         max_k (int): Maximum number of the clusters
+        save_path (str): path of image saving
     """
     fig = plt.figure(figsize=(8, 6))
 
@@ -369,6 +375,7 @@ def draw_cm(y_true: np.ndarray, clus_fisher: np.ndarray,
         clus_fisher (np.ndarray): predict labels of Fisher
         clus_kmeans (np.ndarray): predict labels of K-Means
         clus_cah (np.ndarray): predict labels of CAH
+        save_path (str): path of image saving
     """
     y_true = y_true.astype(int)
     
