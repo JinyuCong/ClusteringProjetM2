@@ -142,7 +142,7 @@ class FisherCluster:
 
         # calcul recursive des critères optimaux
         M[:, 0] = D[0, :]
-        for k in range(1, self.n_clusters):  # 第k个窗口
+        for k in range(1, self.n_clusters):  # k-th window
             for i in range(k, n):
                 costs = [M[time - 1, k - 1] + D[time, i] for time in range(k, i + 1)]
                 M[i, k] = np.min(costs)
