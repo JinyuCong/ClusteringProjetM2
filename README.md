@@ -3,6 +3,26 @@
 Master MLSD project (2026/2027). The goal is to split a sequence of observations
 (x_1, ..., x_n) into K **contiguous** segments, as homogeneous as possible.
 
+## Report
+
+- [Final report (PDF)](rapport/rapport.pdf)
+- [Editable Overleaf project (ZIP)](rapport/overleaf.zip)
+- [Editing, figure regeneration and verification guide](rapport/README.md)
+
+The French report presents the methodology, results and sensitivity to K-Means
+initialization and scaling, with **8 figures and 5 tables**. It has **7 numbered
+content pages, including references**, plus 5 preliminary pages.
+
+For Overleaf, import the ZIP as an existing project, select `main.tex` and use
+**pdfLaTeX**. To rebuild the PDF and ZIP locally with Python and pdfLaTeX installed:
+
+```bash
+python rapport/build.py
+```
+
+The report's vector figures are checked against the script's outputs. The linked
+guide explains how to regenerate them and verify the numerical results.
+
 ## What was done
 
 - **Fisher's algorithm** implemented from scratch in `fisherDP.py` (`FisherCluster`,
@@ -44,7 +64,7 @@ the methods depends on K-Means reaching a good local optimum.
 
 ## Usage
 
-Requirements: Python 3.10+, `numpy`, `scipy`, `scikit-learn`, `matplotlib`, `seaborn`.
+Requirements: Python 3.11+, `numpy`, `scipy`, `scikit-learn`, `matplotlib`, `seaborn`.
 
 ```bash
 python -m venv .venv
@@ -95,4 +115,5 @@ The figures are shown and saved in `figures/<dataset>/`: `inertia.png`,
 - `sequencesimu.txt`, `aiguillage.txt`: datasets
 - `requirements.txt`: Python dependencies
 - `figures/`: saved figures
+- [`rapport/`](rapport/): report PDF, editable LaTeX sources, Overleaf ZIP and reproduction tools
 - `projet.pdf`: project statement
