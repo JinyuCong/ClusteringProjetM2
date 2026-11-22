@@ -1,0 +1,3 @@
+# Preserve binary report assets, including vector PDFs with ASCII content.
+*.pdf binary
+*.zip binary

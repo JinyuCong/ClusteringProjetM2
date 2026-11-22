@@ -1,0 +1,106 @@
+{
+  "source_commit": "180de7cb07428410658491073b2b02c240e178b1",
+  "sha256": {
+    "fisherDP.py": "b306bc94b02f1040a5038fd3c46751adbae222a7c2280ff5b3c6d447438a94f1",
+    "sequencesimu.txt": "7287767e17c8abbabf0302d20e076ad0c6b958adc53280d579e0c051fc82be69",
+    "aiguillage.txt": "7bc4490068f27d0e5950311d11aeba225d42635bdc5bb74f4268dd45ecbade09"
+  },
+  "parameters": {
+    "n_init": 20,
+    "seed": 42
+  },
+  "profile": {
+    "sequencesimu": {
+      "rows": 160,
+      "features": 2,
+      "nonfinite": 0,
+      "distinct_rows": 160,
+      "duplicate_excess": 0,
+      "duplicate_groups": 0,
+      "constant_features": 0
+    },
+    "aiguillage": {
+      "rows": 140,
+      "features": 552,
+      "nonfinite": 0,
+      "distinct_rows": 128,
+      "duplicate_excess": 12,
+      "duplicate_groups": 8,
+      "constant_features": 0
+    }
+  },
+  "scaling": {
+    "Brutes": {
+      "fisher_cuts_zero": [
+        35,
+        75,
+        120
+      ],
+      "fisher_ari": 1.0,
+      "kmeans_ari": 0.9426487695578507,
+      "ward_ari": 0.8589289399789067
+    },
+    "Standardisées": {
+      "fisher_cuts_zero": [
+        21,
+        75,
+        120
+      ],
+      "fisher_ari": 0.7807145720455692,
+      "kmeans_ari": 0.7345427267938478,
+      "ward_ari": 0.5453954243375276
+    }
+  },
+  "seed_runs": [
+    {
+      "seed": 0,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    },
+    {
+      "seed": 1,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    },
+    {
+      "seed": 2,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    },
+    {
+      "seed": 3,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    },
+    {
+      "seed": 4,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    },
+    {
+      "seed": 5,
+      "ari": 0.9247644840184563,
+      "inertia": 10377064.0
+    },
+    {
+      "seed": 6,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    },
+    {
+      "seed": 7,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    },
+    {
+      "seed": 8,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    },
+    {
+      "seed": 9,
+      "ari": 0.9426487695578507,
+      "inertia": 10346192.0
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+% Main document for Overleaf. Three pdfLaTeX passes settle the contents.
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\frenchsetup{SmallCapsFigTabCaptions=false}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.15cm,footskip=1cm,headheight=14pt,headsep=0.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx,booktabs,float}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{xcolor}
+\definecolor{navy}{HTML}{19334D}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{navy}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.1em}{0.45em}
+\titlespacing*{\subsection}{0pt}{0.8em}{0.35em}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Clustering sous contrainte d'ordre — Programmation dynamique de Fisher},
+            pdfsubject={Projet de clustering, Master MLSD, 2026–2027},
+            pdfkeywords={segmentation, Fisher, Bellman, K-means, Ward}}
+\input{metadata}
+\pdfstringdefDisableCommands{\def\\{, }}
+\hypersetup{pdfauthor={\ReportAuthors}}
+\input{tables/metrics}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\setlength{\textfloatsep}{0.65em}
+\setlength{\intextsep}{0.65em}
+\setlength{\abovedisplayskip}{0.55em}
+\setlength{\belowdisplayskip}{0.55em}
+\renewcommand{\arraystretch}{1.12}
+\graphicspath{{figures/}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\file}[1]{\texttt{\detokenize{#1}}}
+% Fixed running title on body pages; preliminary pages retain plain numbering.
+\makeatletter
+\def\ps@report{%
+  \def\@oddhead{\normalfont\small\color{navy}\ReportShortTitle\hfil\ReportHeaderProgramme}%
+  \let\@evenhead\@oddhead
+  \def\@oddfoot{\normalfont\hfil\thepage\hfil}%
+  \let\@evenfoot\@oddfoot
+}
+\makeatother
+\raggedbottom
+\begin{document}
+\hypersetup{pageanchor=false}
+\input{cover}
+\clearpage
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+\begingroup
+\titleformat{name=\section,numberless}{\centering\large\bfseries\color{navy}}{}{0pt}{}
+\input{resume}
+\clearpage
+\tableofcontents
+\clearpage
+\renewcommand{\listfigurename}{Liste des figures}
+\renewcommand{\listtablename}{Liste des tableaux}
+\listoffigures
+\clearpage
+\listoftables
+\endgroup
+\clearpage
+\pagenumbering{arabic}
+\pagestyle{report}
+\input{sections/01_objectif_methode}
+\input{sections/01b_critere}
+\input{sections/02_protocole}
+\input{sections/03_simulation}
+\input{sections/04_aiguillage}
+\input{sections/05_sensibilite}
+\clearpage
+\input{references}
+\end{document}

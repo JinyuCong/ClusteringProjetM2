@@ -1,0 +1,19 @@
+\section{Méthode et protocole expérimental}
+\subsection{Critère de segmentation}
+Pour $x_i\in\R^p$, le coût d'un segment $[a,b]$ est sa somme des carrés
+autour du barycentre, suivant le critère d'homogénéité de Fisher
+\cite{fisher} :
+\begin{equation}
+ \mu_{a:b}=\frac{1}{b-a+1}\sum_{i=a}^{b}x_i,
+ \qquad D(a,b)=\sum_{i=a}^{b}\norm{x_i-\mu_{a:b}}^2.
+ \label{eq:segment}
+\end{equation}
+Avec $s_0=1<s_1<\dots<s_{K-1}<s_K=n+1$, la partition est formée des
+intervalles $[s_{k-1},s_k-1]$ et minimise
+\begin{equation}
+ C(s_1,\dots,s_{K-1})=\sum_{k=1}^{K}D(s_{k-1},s_k-1).
+ \label{eq:objectif}
+\end{equation}
+Les segments sont non vides, disjoints et couvrent toutes les observations.
+Cette écriture conserve l'inertie du clustering euclidien, mais restreint
+l'ensemble des partitions admissibles à celles respectant l'ordre.

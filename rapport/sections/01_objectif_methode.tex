@@ -1,0 +1,30 @@
+﻿\section{Introduction}
+\subsection{Objectif}
+Nous étudions l'apport de la contrainte d'ordre pour identifier des régimes
+homogènes dans une séquence. Fisher est comparé aux K-means et à la CAH de Ward
+sur \file{sequencesimu}, puis sur \file{aiguillage} à quatre classes.
+Une classe doit ici former un intervalle : des groupes proches dans l'espace
+peuvent correspondre à des régimes temporels différents.
+
+\subsection{Données et démarche}
+\begin{table}[H]
+\centering\small
+\begin{tabular}{lrrl}
+\toprule
+Fichier & Observations $n$ & Variables $p$ & Référence disponible \\
+\midrule
+\file{sequencesimu.txt} & 160 & 2 & Aucune étiquette fournie \\
+\file{aiguillage.txt} & 140 & 552 & Colonne 553 : quatre classes \\
+\bottomrule
+\end{tabular}
+\caption[Données analysées]{Données analysées. Les lignes restent dans leur ordre d'origine.}
+\label{tab:donnees}
+\end{table}
+
+La colonne de référence de \file{aiguillage} est séparée des variables avant
+tout ajustement. Les 552 coordonnées contribuent au calcul des distances.
+
+La démarche comporte trois étapes : définir et vérifier le critère de Fisher,
+choisir le nombre de segments sur les données simulées, puis évaluer les
+partitions réelles. Les expériences d'initialisation et de changement d'échelle
+évaluent la sensibilité des partitions.

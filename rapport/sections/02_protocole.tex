@@ -1,0 +1,50 @@
+\subsection{Programmation dynamique}
+Soit $M(i,k)$ le coût minimal des $i$ premières observations en $k$ segments :
+\begin{align}
+ M(i,1)&=D(1,i),\label{eq:base}\\
+ M(i,k)&=\min_{t=k,\dots,i}\bigl\{M(t-1,k-1)+D(t,i)\bigr\},
+ \quad 2\leq k\leq K,\ i\geq k.\label{eq:recurrence}
+\end{align}
+Le tableau $A$ conserve l'argument du minimum ; la reconstruction remonte de
+$(n,K)$ à $(t-1,k-1)$, avec $t=A(i,k)$. Le principe d'optimalité garantit
+le minimum global à $K$ fixé : chaque préfixe retenu est optimal \cite{fisher}.
+
+Dans \file{fisherDP.py}, \file{diam} calcule \eqref{eq:segment} et
+\file{clustfisher} retourne le modèle, les coupures et les labels.
+Le critère est stocké dans \file{inertia_}. La récurrence coûte $O(Kn^2)$ ; le calcul
+direct de $D$ ajoute $O(n^3p)$, avec une mémoire $O(n^2+nK)$.
+
+\subsection{Comparateurs et prétraitement}
+Les \textbf{K-means} alternent affectation et calcul des barycentres, avec un
+optimum local dépendant de l'initialisation \cite{lloyd}.
+La \textbf{CAH de Ward} fusionne les groupes en augmentant le moins possible
+l'inertie ; une coupe fournit $K$ classes \cite{ward}.
+Ces méthodes ignorent l'ordre.
+
+Le protocole principal est le suivant : variables brutes en \file{float32},
+Ward euclidien et K-means (initialisation \file{k-means++}, \file{n_init=20},
+\file{random_state=42}) ; le départ de moindre inertie est retenu \cite{sklearn}.
+Les départs multiples limitent le risque de retenir un optimum local défavorable.
+L'ACP, calculée par SVD complète après centrage-réduction, sert seulement à
+l'affichage des données réelles ; les modèles utilisent
+552 variables. La section~\ref{sec:sensibilite} étudie les variantes du protocole.
+
+\subsection{Évaluation et vérification}
+L'inertie est recalculée pour chaque partition. L'\textbf{ARI} compare les paires
+d'individus, en corrigeant l'accord attendu par hasard ; il vaut 1 pour des
+partitions identiques à permutation près \cite{hubert}. Le \textbf{taux de bonne classification}
+est \cite{same}
+\begin{equation}
+ \mathrm{TBC}=\frac{1}{n}\max_{\pi}\sum_{i=1}^{n}
+ \mathbf{1}\{y_i=\pi(\widehat z_i)\}.
+ \label{eq:tbc}
+\end{equation}
+L'algorithme hongrois aligne les labels pour le TBC et les matrices de confusion ;
+l'ARI ne nécessite aucun alignement. Les changements entre labels voisins
+mesurent la fragmentation, pas l'exactitude.
+
+Les entrées vides, non finies et les valeurs illégales de $K$ sont rejetées.
+Les coûts et les coupures de Fisher sont vérifiés indépendamment par
+énumération exhaustive sur 270 cas :
+$n=1,\dots,9$, $p\in\{1,2,4\}$, tous les $K$ légaux,
+\file{float32}/\file{float64}, tolérances relative $2\times10^{-6}$ et absolue $10^{-6}$.
